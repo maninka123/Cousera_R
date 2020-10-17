@@ -3,6 +3,13 @@
 
 ## Write a short comment describing this function
 
+#The first function, makeCacheMatrix creates a list containing a function to
+
+#set the value of the matrix
+#get the value of the matrix
+#set the matrix of the inverse
+#get the matrix of the inverse
+
 makeCacheMatrix <- function(x = matrix()) {
   m <- NULL
   set <- function(y) {
@@ -10,7 +17,7 @@ makeCacheMatrix <- function(x = matrix()) {
     m <<- NULL
   }
   get <- function() x
-  setinv <- function(solve) m <<- solve
+  setinv <- function(inverse) m <<- inverse
   getinv <- function() m
   list(set = set, get = get,
        setinv = setminv,
@@ -19,6 +26,10 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## Write a short comment describing this function
+#The following function calculates the inverse of the matrix set in the above function  
+#However, it first checks to see if the inverse has already been calculated. 
+#If so, it gets the inverse from the cache and skips the computation. 
+#Otherwise, it calculates the inverse of the matrix and sets the inverse in the cache via the solve function.
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
@@ -28,7 +39,7 @@ cacheSolve <- function(x, ...) {
     return(m)
   }
   data <- x$get()
-  m <- solve(data, ...)
+  m <- solve(data)
   x$setinv(m)
   m
   
